@@ -10,7 +10,7 @@ public class Turn {
   }
 
   public static Turn of(final String line) {
-    return new Turn(Direction.of(line.substring(0,1)), Integer.parseInt(line.substring(1)));
+    return new Turn(Direction.of(line.substring(0, 1)), Integer.parseInt(line.substring(1)));
   }
 
   @Override
