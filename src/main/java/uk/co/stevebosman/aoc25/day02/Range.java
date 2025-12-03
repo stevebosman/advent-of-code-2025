@@ -24,24 +24,25 @@ public final class Range {
   public Set<Long> getInvalids() {
     return getInvalids(2);
   }
+
   public Set<Long> getInvalids(final int repeats) {
     final Set<Long> invalids = new TreeSet<>();
-      final long s = startText.length() < repeats
-                     ? 0
-                     : Long.parseLong(startText.substring(0, startText.length() / repeats));
-      for (long i = s; ; i++) {
-        final long test = Long.parseLong(("" + i).repeat(repeats));
-        if (test > end) break;
-        if (start <= test) {
-          invalids.add(test);
-        }
+    final long s = startText.length() < repeats
+                   ? 0
+                   : Long.parseLong(startText.substring(0, startText.length() / repeats));
+    for (long i = s; ; i++) {
+      final long test = Long.parseLong(("" + i).repeat(repeats));
+      if (test > end) break;
+      if (start <= test) {
+        invalids.add(test);
       }
+    }
     return invalids;
   }
 
   public Set<Long> getInvalids2() {
     final Set<Long> invalids = new TreeSet<>();
-    for (int i = 2; i <=9; i++) {
+    for (int i = 2; i <= 9; i++) {
       invalids.addAll(getInvalids(i));
     }
     return invalids;

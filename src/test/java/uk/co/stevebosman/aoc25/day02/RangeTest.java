@@ -21,7 +21,9 @@ class RangeTest {
           "2121212118-2121212124,0"
   })
   public void ofInvalids(final String rangeText, final int expectedInvalidCount) {
-    assertEquals(expectedInvalidCount, Range.of(rangeText).getInvalids().size());
+    assertEquals(expectedInvalidCount, Range.of(rangeText)
+                                            .getInvalids()
+                                            .size());
   }
 
   @ParameterizedTest
@@ -39,6 +41,8 @@ class RangeTest {
           "2121212118-2121212124,1"
   })
   public void ofInvalids2(final String rangeText, final long expectedInvalidCount) {
-    assertEquals(expectedInvalidCount, Range.of(rangeText).getInvalids2().size());
+    assertEquals(expectedInvalidCount, Range.of(rangeText)
+                                            .getInvalids2()
+                                            .size());
   }
 }

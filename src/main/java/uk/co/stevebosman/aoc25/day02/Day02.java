@@ -14,9 +14,10 @@ public class Day02 {
     final List<Long> invalids = new ArrayList<>();
     for (final String range : ranges) {
       invalids.addAll(Range.of(range)
-                     .getInvalids());
+                           .getInvalids());
     }
-    return invalids.stream().reduce(0L, Long::sum);
+    return invalids.stream()
+                   .reduce(0L, Long::sum);
   }
 
   public long invalidSum2() {
@@ -25,6 +26,7 @@ public class Day02 {
       invalids.addAll(Range.of(range)
                            .getInvalids2());
     }
-    return invalids.stream().reduce(0L, Long::sum);
+    return invalids.stream()
+                   .reduce(0L, Long::sum);
   }
 }
