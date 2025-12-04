@@ -18,7 +18,7 @@ class Day02Test {
   @Test
   void part1input() throws IOException {
     final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Part1Input.txt")));
-    System.out.println("sum: " + day02.invalidSum());
+    System.out.println("day 2, part 1: " + day02.invalidSum());
   }
 
   @Test
@@ -30,6 +30,6 @@ class Day02Test {
   @Test
   void part2input() throws IOException {
     final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Part1Input.txt")));
-    System.out.println("sum: " + day02.invalidSum2());
+    System.out.println("day 2, part 2: " + day02.invalidSum2());
   }
 }

@@ -23,7 +23,7 @@ class Day01Test {
     final Day01 day01 = new Day01();
     final SafeDial actual = day01.process(
             Files.readAllLines(Path.of("src", "test", "resources", "Day01Part1Input.txt")));
-    System.out.println("zeroes: " + actual.getZeroes());
-    System.out.println("clicks: " + actual.getClicks());
+    System.out.println("day 1, part 1: " + actual.getZeroes());
+    System.out.println("day 1, part 2: " + actual.getClicks());
   }
 }

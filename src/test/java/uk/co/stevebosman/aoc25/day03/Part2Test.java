@@ -34,6 +34,6 @@ class Part2Test {
   void input() throws IOException {
     final long actual = Part2.totalJoltage(
             Files.lines(Path.of("src", "test", "resources", "Day03Part1Input.txt")));
-    System.out.println("part2: " + actual);
+    System.out.println("day 3, part 2: " + actual);
   }
 }
