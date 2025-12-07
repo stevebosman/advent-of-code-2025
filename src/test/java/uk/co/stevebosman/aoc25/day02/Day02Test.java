@@ -11,25 +11,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Day02Test {
   @Test
   void part1ExampleSum() throws IOException {
-    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Part1Example1.txt")));
+    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Example.txt")));
     assertEquals(1227775554L, day02.invalidSum());
   }
 
   @Test
   void part1input() throws IOException {
-    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Part1Input.txt")));
+    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Input.txt")));
     System.out.println("day 2, part 1: " + day02.invalidSum());
   }
 
   @Test
   void part2ExampleSum() throws IOException {
-    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Part1Example1.txt")));
+    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Example.txt")));
     assertEquals(4174379265L, day02.invalidSum2());
   }
 
   @Test
   void part2input() throws IOException {
-    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Part1Input.txt")));
+    final Day02 day02 = new Day02(Files.readString(Path.of("src", "test", "resources", "Day02Input.txt")));
     System.out.println("day 2, part 2: " + day02.invalidSum2());
   }
 }

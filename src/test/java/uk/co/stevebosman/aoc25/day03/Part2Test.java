@@ -26,14 +26,14 @@ class Part2Test {
   @Test
   void example() throws IOException {
     final long actual = Part2.totalJoltage(
-            Files.lines(Path.of("src", "test", "resources", "Day03Part1Example1.txt")));
+            Files.lines(Path.of("src", "test", "resources", "Day03Example.txt")));
     assertEquals(3121910778619L, actual);
   }
 
   @Test
   void input() throws IOException {
     final long actual = Part2.totalJoltage(
-            Files.lines(Path.of("src", "test", "resources", "Day03Part1Input.txt")));
+            Files.lines(Path.of("src", "test", "resources", "Day03Input.txt")));
     System.out.println("day 3, part 2: " + actual);
   }
 }
