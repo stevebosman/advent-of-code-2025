@@ -26,7 +26,7 @@ public class Day08 {
     return (long) sortedSizes.get(0) * sortedSizes.get(1) * sortedSizes.get(2);
   }
 
-  private static List<Distance> computeAllDistances(List<Point> points) {
+  private static List<Distance> computeAllDistances(final List<Point> points) {
     final int numberOfPoints = points.size();
     final List<Distance> distances = new ArrayList<>();
     for (int i = 0; i < numberOfPoints; i++) {
