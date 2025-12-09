@@ -20,4 +20,15 @@ class Day09Test {
     System.out.println("day 9, part 1: " + actual);
   }
 
+  @Test
+  void part2example() throws IOException {
+    final long actual = Day09.part2(Path.of("src", "test", "resources", "Day09Example.txt"));
+    assertEquals(24L, actual);
+  }
+
+  @Test
+  void part2input() throws IOException {
+    final long actual = Day09.part2(Path.of("src", "test", "resources", "Day09Input.txt"));
+    System.out.println("day 9, part 2: " + actual);
+  }
 }
