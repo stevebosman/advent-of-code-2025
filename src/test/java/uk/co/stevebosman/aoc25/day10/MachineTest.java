@@ -25,7 +25,7 @@ class MachineTest {
   }
 
   @Test
-  void solve() {
-    assertEquals(2, EXAMPLE1.solve());
+  void initialise() {
+    assertEquals(2, EXAMPLE1.initialise());
   }
 }

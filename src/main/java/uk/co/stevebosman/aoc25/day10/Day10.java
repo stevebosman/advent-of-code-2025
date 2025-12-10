@@ -11,7 +11,7 @@ public class Day10 {
     final List<String> lines = Files.readAllLines(path);
     return lines.stream()
                 .map(Machine::of)
-                .map(Machine::solve)
+                .map(Machine::initialise)
                 .reduce(0, Integer::sum);
   }
 

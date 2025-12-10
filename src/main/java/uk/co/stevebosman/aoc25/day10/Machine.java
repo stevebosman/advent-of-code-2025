@@ -24,7 +24,7 @@ public record Machine(List<Boolean> desiredState, List<Transition> transitions, 
     return new Machine(states, transitions, joltages);
   }
 
-  public int solve() {
+  public int initialise() {
     final Map<List<Boolean>, Integer> statesEncountered = new HashMap<>();
     final List<Boolean> initialState = desiredState.stream()
                                      .map(s -> false)
