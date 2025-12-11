@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 public record Part1(Map<String, Node> nodes) {
 
+  private static final String START = "you";
+  private static final String FINISH = "out";
+
   public static Part1 of(final Path path) throws IOException {
     final List<String> lines = Files.readAllLines(path);
     final Map<String, Node> nodes = lines.parallelStream()
@@ -20,13 +23,13 @@ public record Part1(Map<String, Node> nodes) {
 
   public int countPathsToOut() {
     final Map<Node, Integer> counts = new HashMap<>();
-    return pathsToOutFrom(counts, nodes.get("you"));
+    return pathsToOutFrom(counts, nodes.get(START));
   }
 
   private int pathsToOutFrom(final Map<Node, Integer> counts, final Node node) {
     int result = 0;
     for (final String id : node.connections()) {
-      if ("out".equals(id)) {
+      if (FINISH.equals(id)) {
         counts.put(node, 1);
         result++;
       } else {
