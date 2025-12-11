@@ -27,10 +27,10 @@ public record Machine(List<Boolean> desiredState, List<Transition> transitions, 
   public int initialise() {
     final Map<List<Boolean>, Integer> statesEncountered = new HashMap<>();
     final List<Boolean> initialState = desiredState.stream()
-                                     .map(s -> false)
-                                     .toList();
+                                                   .map(s -> false)
+                                                   .toList();
     statesEncountered.put(initialState, 0);
-    for(final Transition transition: transitions) {
+    for (final Transition transition : transitions) {
       tryTransition(statesEncountered, transition, initialState, 1);
     }
     return statesEncountered.get(desiredState);
@@ -39,17 +39,18 @@ public record Machine(List<Boolean> desiredState, List<Transition> transitions, 
   private void tryTransition(final Map<List<Boolean>, Integer> statesEncountered, final Transition transition, final List<Boolean> initialState, final int depth) {
     final List<Boolean> nextState = new ArrayList<>();
     for (int i = 0; i < initialState.size(); i++) {
-      if (transition.buttons().contains(i)) {
+      if (transition.buttons()
+                    .contains(i)) {
         nextState.add(!initialState.get(i));
       } else {
         nextState.add(initialState.get(i));
       }
     }
-    if (statesEncountered.containsKey(nextState) && statesEncountered.get(nextState)<=depth) return;
+    if (statesEncountered.containsKey(nextState) && statesEncountered.get(nextState) <= depth) return;
     statesEncountered.put(nextState, depth);
     if (nextState.equals(desiredState)) return;
-    for(final Transition nextTransition: transitions) {
-      tryTransition(statesEncountered, nextTransition, nextState, depth+1);
+    for (final Transition nextTransition : transitions) {
+      tryTransition(statesEncountered, nextTransition, nextState, depth + 1);
     }
   }
 }
