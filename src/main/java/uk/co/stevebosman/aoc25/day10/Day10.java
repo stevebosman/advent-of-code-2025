@@ -9,7 +9,7 @@ public class Day10 {
 
   public static int part1(final Path path) throws IOException {
     final List<String> lines = Files.readAllLines(path);
-    return lines.stream()
+    return lines.parallelStream()
                 .map(Machine::of)
                 .map(Machine::initialise)
                 .reduce(0, Integer::sum);

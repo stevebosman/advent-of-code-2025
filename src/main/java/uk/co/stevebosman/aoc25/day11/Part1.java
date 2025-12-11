@@ -12,9 +12,9 @@ public record Part1(Map<String, Node> nodes) {
 
   public static Part1 of(final Path path) throws IOException {
     final List<String> lines = Files.readAllLines(path);
-    final Map<String, Node> nodes = lines.stream()
+    final Map<String, Node> nodes = lines.parallelStream()
                                          .map(Node::of)
-                                         .collect(Collectors.toMap(n -> n.id(), n -> n));
+                                         .collect(Collectors.toMap(Node::id, n -> n));
     return new Part1(nodes);
   }
 
