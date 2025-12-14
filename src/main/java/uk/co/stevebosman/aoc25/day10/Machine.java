@@ -1,10 +1,18 @@
 package uk.co.stevebosman.aoc25.day10;
 
+import com.microsoft.z3.Context;
+import com.microsoft.z3.IntExpr;
+import com.microsoft.z3.IntNum;
+import com.microsoft.z3.Model;
+import com.microsoft.z3.Optimize;
+import com.microsoft.z3.Status;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public record Machine(List<Boolean> desiredState, List<Transition> transitions, List<Integer> joltages) {
   public static Machine of(final String line) {
@@ -24,7 +32,7 @@ public record Machine(List<Boolean> desiredState, List<Transition> transitions, 
     return new Machine(states, transitions, joltages);
   }
 
-  public int initialise() {
+  public int initialiseIndicatorLights() {
     final Map<List<Boolean>, Integer> statesEncountered = new HashMap<>();
     final List<Boolean> initialState = desiredState.stream()
                                                    .map(s -> false)
@@ -53,4 +61,42 @@ public record Machine(List<Boolean> desiredState, List<Transition> transitions, 
       tryTransition(statesEncountered, nextTransition, nextState, depth + 1);
     }
   }
+
+  public Optional<Integer> initialiseJoltage() {
+    try (final Context ctx = new Context()) {
+      final Optimize optimize = ctx.mkOptimize();
+      final IntNum zero = ctx.mkInt(0);
+      final IntExpr[] btnPresses = new IntExpr[transitions.size()];
+      for (int buttonIndex = 0; buttonIndex < transitions().size(); buttonIndex++) {
+        btnPresses[buttonIndex] = ctx.mkIntConst("btn" + buttonIndex);
+        optimize.Add(ctx.mkGe(btnPresses[buttonIndex], zero));
+      }
+
+      for (int joltageIndex = 0; joltageIndex < joltages.size(); joltageIndex++) {
+        final List<IntExpr> buttons = new ArrayList<>();
+        for (int buttonIndex = 0; buttonIndex < transitions().size(); buttonIndex++) {
+          if (transitions.get(buttonIndex)
+                         .buttons()
+                         .contains(joltageIndex)) {
+            buttons.add(btnPresses[buttonIndex]);
+          }
+        }
+        optimize.Add(ctx.mkEq(ctx.mkAdd(buttons.toArray(IntExpr[]::new)), ctx.mkInt(joltages.get(joltageIndex))));
+      }
+
+      final IntExpr totalPresses = ctx.mkIntConst("totalPresses");
+      optimize.Add(ctx.mkGe(totalPresses, zero));
+      optimize.Add(ctx.mkEq(totalPresses, ctx.mkAdd(btnPresses)));
+
+      optimize.MkMinimize(totalPresses);
+
+      if (optimize.Check() == Status.SATISFIABLE) {
+        final Model model = optimize.getModel();
+        final IntNum result = (IntNum) model.evaluate(totalPresses, false);
+        return Optional.of(result.getInt());
+      }
+    }
+    return Optional.empty();
+  }
+
 }

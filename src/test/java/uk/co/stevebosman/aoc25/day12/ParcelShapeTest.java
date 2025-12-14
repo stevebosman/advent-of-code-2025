@@ -29,7 +29,7 @@ class ParcelShapeTest {
     final ParcelShape parcelShape = ParcelShape.of(List.of("##", "#."));
     assertEquals(3, parcelShape.size());
     final boolean[][][] actual = parcelShape
-                                            .orientations();
+            .orientations();
     final boolean[][][] expected = new boolean[][][]{
             {{true, true}, {true, false}},
             {{true, false}, {true, true}},

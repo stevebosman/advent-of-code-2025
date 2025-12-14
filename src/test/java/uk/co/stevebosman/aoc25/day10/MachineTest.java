@@ -3,8 +3,10 @@ package uk.co.stevebosman.aoc25.day10;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MachineTest {
   private static final Machine EXAMPLE1 = new Machine(List.of(false, true, true, false),
@@ -25,7 +27,14 @@ class MachineTest {
   }
 
   @Test
-  void initialise() {
-    assertEquals(2, EXAMPLE1.initialise());
+  void initialiseIndicatorLights() {
+    assertEquals(2, EXAMPLE1.initialiseIndicatorLights());
+  }
+
+  @Test
+  void initialiseJoltage() {
+    final Optional<Integer> actual = EXAMPLE1.initialiseJoltage();
+    assertTrue(actual.isPresent());
+    assertEquals(10, actual.get());
   }
 }

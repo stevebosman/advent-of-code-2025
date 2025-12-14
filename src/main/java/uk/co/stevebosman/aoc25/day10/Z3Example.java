@@ -48,11 +48,12 @@ public class Z3Example {
       optimize.Add(ctx.mkEq(ctx.mkAdd(btn2Presses, btn6Presses), ctx.mkInt(5)));
       optimize.Add(ctx.mkEq(ctx.mkAdd(btn3Presses, btn4Presses, btn5Presses), ctx.mkInt(4)));
       optimize.Add(ctx.mkEq(ctx.mkAdd(btn1Presses, btn2Presses, btn4Presses), ctx.mkInt(7)));
-      optimize.Add(ctx.mkEq(totalPresses, ctx.mkAdd(btn1Presses, btn2Presses, btn3Presses, btn4Presses, btn5Presses, btn6Presses)));
+      optimize.Add(ctx.mkEq(totalPresses,
+                            ctx.mkAdd(btn1Presses, btn2Presses, btn3Presses, btn4Presses, btn5Presses, btn6Presses)));
 
       optimize.MkMinimize(totalPresses);
 
-      if(optimize.Check() == Status.SATISFIABLE){
+      if (optimize.Check() == Status.SATISFIABLE) {
         final Model model = optimize.getModel();
         final IntNum result = (IntNum) model.evaluate(totalPresses, false);
         System.out.printf("result = %d%n", result.getInt());

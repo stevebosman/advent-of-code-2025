@@ -28,7 +28,10 @@ public record ParcelShape(long size, boolean[][][] orientations) {
     addRotation(rotated3, uniqueTest, representations);
     addRotation(flip(rotated3), uniqueTest, representations);
 
-    return new ParcelShape(lines.toString().chars().filter(c->c=='#').count(), representations.toArray(boolean[][][]::new));
+    return new ParcelShape(lines.toString()
+                                .chars()
+                                .filter(c -> c == '#')
+                                .count(), representations.toArray(boolean[][][]::new));
   }
 
   private static void addRotation(final boolean[][] flippedLines0, final Set<String> uniqueTest, final List<boolean[][]> representations) {
